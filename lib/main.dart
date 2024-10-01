@@ -30,13 +30,15 @@ class ProductScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Image.asset(
-            'assets/camisa.jpg',
-            height: 400,
-            width: 400,
-            fit: BoxFit.cover,
+          Center(
+            child: Image.asset(
+              'images/camisa.jpg',
+              height: 350,
+              width: 350,
+              fit: BoxFit.cover,
+            ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 24),
           const Text(
             'Shirt - 49.99€',
             style: TextStyle(fontSize: 24),

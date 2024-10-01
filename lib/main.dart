@@ -32,8 +32,8 @@ class ProductScreen extends StatelessWidget {
         children: [
           Image.asset(
             'assets/camisa.jpg',
-            height: 300,
-            width: double.infinity,
+            height: 400,
+            width: 400,
             fit: BoxFit.cover,
           ),
           const SizedBox(height: 20),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'product.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,6 +25,13 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Product product = Product(
+      name: 'Elegant Shirt',
+      price: 49.99,
+      description: 'A comfortable and stylish shirt, perfect for any occasion.',
+      imagePath: 'images/camisa.jpg',
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product'),
@@ -32,16 +40,16 @@ class ProductScreen extends StatelessWidget {
         children: [
           Center(
             child: Image.asset(
-              'images/camisa.jpg',
+              product.imagePath,
               height: 350,
               width: 350,
               fit: BoxFit.cover,
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
-            'Shirt - 49.99€',
-            style: TextStyle(fontSize: 24),
+          Text(
+            product.name,
+            style: const TextStyle(fontSize: 24),
           ),
         ],
       ),
@@ -49,7 +57,9 @@ class ProductScreen extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const DetailScreen()),
+            MaterialPageRoute(
+              builder: (context) => DetailScreen(product: product),
+            ),
           );
         },
         child: const Icon(Icons.add),
@@ -59,27 +69,29 @@ class ProductScreen extends StatelessWidget {
 }
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+  final Product product;
+
+  const DetailScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shirt Details'),
+        title: Text(product.name),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Shirt - 49.99€',
-              style: TextStyle(fontSize: 24),
+              '${product.name} - ${product.price}€',
+              style: const TextStyle(fontSize: 24),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
-              'A comfortable and stylish shirt, perfect for any occasion.',
-              style: TextStyle(fontSize: 18),
+              product.description,
+              style: const TextStyle(fontSize: 18),
             ),
           ],
         ),
